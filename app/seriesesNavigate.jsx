@@ -3,10 +3,7 @@ import { TouchableOpacity, StyleSheet, Image, Dimensions, ScrollView, View, Text
 import { NewsData } from "../data/Data";
 
 const size = Dimensions.get("screen")
-
-
 const SeriesesNavigate = (props) => {
-
   const navigation = useNavigation();
   return (
     <ScrollView horizontal style={styles.ScrollViewHorizontal}>

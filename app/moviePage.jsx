@@ -20,40 +20,54 @@ const moviePage = () => {
       }
    }
    return (
-      <View style={styles.container}>
-         <Image source={params.image} style={styles.image} />
-         <Text style={styles.title}>{params.title}</Text>
-         <Text style={styles.news}>{params.news}</Text>
-         <Button title="للمشاهده اضغط هنا" onPress={openURL} />
-      </View>
-   );
+      <View style={styles.container}>  
+            <Image source={params.image} style={styles.image} />
+      
+            <View style={styles.contain} >
+            <Text style={styles.title}>{params.title}</Text>
+            <Text style={styles.description}>{params.news}</Text>
+            </View>
+            <Button title="للمشاهده اضغط هنا" onPress={openURL} />
+          </View>
+        );
 }
 export default moviePage
 const styles = StyleSheet.create({
    container: {
-      flex: 1,
-      alignItems: 'center',
-      backgroundColor: '#FFF',
-      padding: 16,
+     flex: 1,
+     alignItems: 'center',
+     backgroundColor:'#a75c5c',
+ 
+     padding: 16,
    },
    image: {
-      width: 200,
-      height: 300,
-      borderRadius: 8,
-      marginBottom: 16,
+     width: 485,
+     height: 300,
+     borderRadius:10,
+     marginBottom: 16,
+     marginTop: 0,
+     position: 'absolute',
+     width:200,
+     borderColor:"back",
+     borderWidth:3,
    },
    title: {
-      fontSize: 24,
-      fontWeight: 'bold',
-      marginBottom: 8,
-      color: '#610D0D',
-      textAlign: 'center',
+     fontSize: 24,
+     fontWeight: 'bold',
+     color: '#610D0D',
+     textAlign: 'center',
    },
    description: {
-      fontSize: 16,
-      color: '#333',
-      textAlign: 'center',
+     alignSelf:'center',    
+     color: 'black',
+     textAlign: 'center',
+     fontWeight:'bold',
    },
-});
-
+   contain:{
+     alignContent:'space-evenly',
+     flexDirection:'column',
+     marginTop:300,
+   }
+ });
+ 
 

@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { Button, ScrollView, StyleSheet, Text, View, Image, Dimensions } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import SearchBox from './SearchBox';
-import News from './News';
-import DropdownMenu, { MenuOption } from '../components/DropdownMenu';
-import Images from '../assets/images/images';
-import { movieData, NewsData } from '../data/Data';
-import MovieNavigate from './movieNavigate';
-import SeriesesNavigate from './seriesesNavigate';
+import News from '../News';
+import DropdownMenu, { MenuOption } from '../../components/DropdownMenu';
+import Images from '../../assets/images/images';
+import { movieData, NewsData } from '../../data/Data';
+import MovieNavigate from '../movieNavigate';
+import SeriesesNavigate from '../seriesesNavigate';
+import SearchBox from './../SearchBox';
 const size = Dimensions.get("screen")
 
 const Home = () => {
@@ -15,8 +15,15 @@ const Home = () => {
   const [visible, setVisible] = useState(false);
   const [visible2, setVisible2] = useState(false);
 
+  const Options = [
+    { label: "مسلسلات عربيه", category: "مسلسلات عربيه" },
+    { label: "مسلسلات اجنبيه", category: "مسلسلات اجنبيه" },
+    { label: "مسلسلات تركيه", category: "مسلسلات تركيه" }
+  ];
+  
   const DropdownMenuRender = () => {
     const navigation = useNavigation();
+    const [visible, setVisible] = useState(false);
   
     return (
       <DropdownMenu
@@ -29,22 +36,27 @@ const Home = () => {
           </View>
         }
       >
-       <MenuOption onSelect={() => navigation.navigate('CategoryScreen', { category: "مسلسلات عربيه" })}>
-          <Text>مسلسلات عربيه</Text>
-        </MenuOption>
-        <MenuOption onSelect={() => navigation.navigate('CategoryScreen', { category: "مسلسلات اجنبيه" })}>
-          <Text>مسلسلات اجنبيه</Text>
-        </MenuOption>
-        <MenuOption onSelect={() => navigation.navigate('CategoryScreen', { category: "مسلسلات تركيه" })}>
-          <Text>مسلسلات تركيه</Text>
-        </MenuOption>
+        {Options.map((option, index) => (
+          <MenuOption 
+            key={index} 
+            onSelect={() => navigation.navigate('CategoryScreen', { category: option.category })}
+          >
+            <Text>{option.label}</Text>
+          </MenuOption>
+        ))}
       </DropdownMenu>
     );
   };
 
-  
-
+  const menuOptions = [
+    { label: "افلام عربيه", category: "فيلم عربي" },
+    { label: "افلام اجنبيه", category: "فيلم اجنبي" },
+    { label: "افلام تركيه", category: "فيلم تركي" }
+  ];
   const DropdownMenuRender2 = () => {
+    const navigation = useNavigation();
+    const [visible2, setVisible2] = useState(false);
+  
     return (
       <DropdownMenu
         visible={visible2}
@@ -52,30 +64,27 @@ const Home = () => {
         handleClose={() => setVisible2(false)}
         trigger={
           <View style={styles.triggerStyle}>
-            <Text style={styles.triggerText}>افلام</Text>
-          </View>
+          <Text style={styles.triggerText}>افلام</Text>
+        </View>
         }
       >
-        <MenuOption onSelect={() => navigation.navigate('MoviesListScreen', { category: "فيلم عربي" })}>
-          <Text>افلام عربيه</Text>
-        </MenuOption>
-        <MenuOption onSelect={() => navigation.navigate('MoviesListScreen', { category: "فيلم اجنبي" })}>
-          <Text>افلام اجنبيه</Text>
-        </MenuOption>
-        <MenuOption onSelect={() => navigation.navigate('MoviesListScreen', { category: "فيلم تركي" })}>
-          <Text>افلام تركيه</Text>
-        </MenuOption>
+        {menuOptions.map((option, index) => (
+          <MenuOption 
+            key={index} 
+            onSelect={() => navigation.navigate('MoviesListScreen', { category: option.category })}
+          >
+            <Text>{option.label}</Text>
+          </MenuOption>
+        ))}
       </DropdownMenu>
     );
   };
-
   return (
     <View style={styles.screenContainer}>
       <View style={styles.cardContainer}>
         <View style={styles.box}>
           <SearchBox />
         </View>
-        <Button title="Next" onPress={() => navigation.navigate('screenpage')} />
         <View style={styles.menuContainer}>
           <DropdownMenuRender />
           <DropdownMenuRender2 />
@@ -144,17 +153,16 @@ const styles = StyleSheet.create({
     textAlign: 'right',
   },
   newsContainer: {
-    flexDirection: 'row', // Arrange image and text side by side
+    flexDirection: 'row', 
     backgroundColor: '#FFF',
     borderRadius: 8,
-    padding: 8, // Reduce padding for smaller container
-    marginRight: 8, // Reduce margin between news items
+    padding: 8, 
+    marginRight: 8, 
     alignItems: 'flex-start',
-    width: size.width*0.84, // Set a fixed width
-    // height: "60%",
+    width: size.width*0.84,
   },
   newsImage: {
-    width: 80, // Smaller image
+    width: 80, 
     height: 95,
     resizeMode: 'cover',
     borderRadius: 8,
@@ -185,7 +193,6 @@ const styles = StyleSheet.create({
   },
   ScrollViewHorizontal:{
     width:'100%',
-    // backgroundColor:'black'
   },
   spase:{
     margin:10

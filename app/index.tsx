@@ -10,22 +10,16 @@ const index = () => {
 
   useEffect(() => {
     setTimeout(() => {
-      navigation.replace('home')
+      navigation.replace('(drawer)')
     }, 1000)
   }, [])
-
   return (
     <View style={styles.ZcreenContainer}>
       <Image source={Images.icon()} style={styles.headerImage} />
-
     </View>
-
   )
 }
-
 export default index
-
-
 const styles = StyleSheet.create({
   ZcreenContainer: {
     flex: 1,
@@ -40,8 +34,4 @@ const styles = StyleSheet.create({
     resizeMode: 'contain',
     marginBottom: 20
   },
-
-
-
-
 })

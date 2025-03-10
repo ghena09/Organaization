@@ -106,12 +106,3 @@ export const movieData = [
   },
 
 ];
-// export const moviePage=[
-//  {
-//  image: Images.how(),
-//type: "movie 1"
-//},
-{
-
-}
-//]
